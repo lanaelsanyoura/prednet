@@ -28,10 +28,9 @@ The model download will include the original weights trained for t+1 prediction,
 ### Steps
 1. **Download/process data**
 	```bash
-	python process_kitti.py
+	$ ./download_data.sh
 	```
-	This will scrape the KITTI website to download the raw data from the city, residential, and road categories (~165 GB) and then process the images (cropping, downsampling).
-	Alternatively, the processed data (~3 GB) can be directly downloaded by executing `download_data.sh`
+	Execute download_data.sh. This will download processed data (~3 GB) and dump it into the correct format using Pickle.
 	<br>
 	<br>
 	
