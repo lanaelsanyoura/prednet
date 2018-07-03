@@ -47,13 +47,13 @@ The model download will include the original weights trained for t+1 prediction,
 	```
 	$ bxaws  s3 ls s3://$bucket_name/kitti_data
 	```
-3. **Edit your manifest file, `tensor-prednet-kitti.yml`**
+3. **Edit your manifest file, `tensorflow-prednet-kitti.yml`**
 
 	This yaml file should hold all the information needed for executing the job, including what bucket, ml framework, and computing instance to use.
 
 4. **Update the template manifest:**
 
-	Edit `tensor-prednet-kitti.yml`:
+	Edit `tensorflow-prednet-kitti.yml`:
 	Add your author info and replace the values of `aws_access_key_id`, `aws_secret_access_key`, and `bucket` 
 	with your storage instance credentials and bucket name.
 	This should be done for both the data input reference (`training_data_reference`) 
