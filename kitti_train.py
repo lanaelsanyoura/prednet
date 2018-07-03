@@ -5,7 +5,6 @@ Train PredNet on KITTI sequences. (Geiger et al. 2013, http://www.cvlibs.net/dat
 import os
 import numpy as np
 np.random.seed(123)
-import hickle as hkl
 import h5py
 from six.moves import cPickle as pickle
 
@@ -31,6 +30,7 @@ train_file = os.path.join(DATA_DIR, 'X_train.hkl')
 train_sources = os.path.join(DATA_DIR, 'sources_train.hkl')
 val_file = os.path.join(DATA_DIR, 'X_val.hkl')
 val_sources = os.path.join(DATA_DIR, 'sources_val.hkl')
+
 
 # Training parameters
 nb_epoch = 150

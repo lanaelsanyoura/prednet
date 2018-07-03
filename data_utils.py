@@ -1,4 +1,3 @@
-import hickle as hkl
 from six.moves import cPickle as pickle
 import h5py
 import numpy as np
@@ -14,7 +13,7 @@ class SequenceGenerator(Iterator):
         file_ = open(data_file, 'rb')
         source = open(source_file, 'rb')
         self.X = pickle.load(file_,  encoding='latin1')  # X will be like (n_images, nb_cols, nb_rows, nb_channels)
-        self.sources = pickle.load(source,  encoding='latin1') # source for each image so when creating sequences can assure that consecutive frames are from same video
+        self.sources = pickle.load(source, encoding='latin1') # source for each image so when creating sequences can assure that consecutive frames are from same video
         file_.close()
         source.close()
         self.nt = nt
