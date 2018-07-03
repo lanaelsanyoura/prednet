@@ -1,0 +1,36 @@
+model_definition:
+  framework:
+#framework name and version (supported list of frameworks available at 'bx ml list frameworks')
+    name: tensorflow
+    version: 1.5
+#name of the training-run
+  name: MYRUN
+#Author name and email
+  author:
+    name: JOHN DOE
+    email: JOHNDOE@EMAIL.COM
+  description: This is running kitti training on the prednet model
+  execution:
+#Command to execute -- see script parameters in later section !!
+    command: python3 kitti_train.py; python3 kitti_evaluate.py
+    compute_configuration:
+#Valid values for name - k80/k80x2/k80x4/p100/p100x2/v100/v100x2
+      name: v100x2
+training_data_reference:
+  name: training_data_reference_name
+  connection:
+    endpoint_url: "https://s3-api.us-geo.objectstorage.service.networklayer.com"
+    aws_access_key_id: < YOUR SAVED ACCESS KEY >
+    aws_secret_access_key: < YOUR SAVED SECRET ACCESS KEY >
+  source:
+    bucket: < mybucketname >
+  type: s3
+training_results_reference:
+  name: training_results_reference_name
+  connection:
+    endpoint_url: "https://s3-api.us-geo.objectstorage.service.networklayer.com"
+    aws_access_key_id: < YOUR SAVED ACCESS KEY >
+    aws_secret_access_key: < YOUR SAVED SECRET ACCESS KEY >
+  target:
+    bucket: < mybucketname >
+  type: s3
