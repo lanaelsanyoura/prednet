@@ -116,7 +116,7 @@ The evaluation will output the mean-squared error for predictions as well as mak
 	```
 6.**Send your code and manifest to IBM Watson Studio:** <br>
 	```
-	$ bx ml train model.zip tensor-prednet-kitti.yml
+	$ bx ml train model.zip tensorflow-prednet-kitti.yml
 	```
 	The command should generate a training ID for you, meaning the prednet model has started training on Watson!
 
