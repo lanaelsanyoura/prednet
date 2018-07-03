@@ -13,10 +13,10 @@ For previous versions of the code compatible with Keras 1.2.1, use fbcdc18.
 To convert old PredNet model files and weights for Keras 2.0 compatibility, see ```convert_model_to_keras2``` in `keras_utils.py`.
 <br>
 
-This is the package that runs on the IBM DLaaS with a detailed tutorial.
+This is the package that is compatible with IBM's DLaaS.
 
 ## DLaaS Setup
-Complete the [one-time setup tutorial](https://github.com/mypublicorg/DLaaS-Getting-StartedTutorial/blob/master/onetimesetup.md). Our steps below are heavily based on the [DLaaS demo tutorial](https://github.com/mypublicorg/DLaaS-Getting-StartedTutorial/blob/master/demo.md).
+Complete the [one-time setup tutorial](https://github.com/mypublicorg/DLaaS-Getting-StartedTutorial/blob/master/onetimesetup.md). Our tutorial steps below are heavily based on the [DLaaS demo tutorial](https://github.com/mypublicorg/DLaaS-Getting-StartedTutorial/blob/master/demo.md).
 
 ## KITTI Demo
 
