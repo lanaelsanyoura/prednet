@@ -6,8 +6,7 @@ The PredNet is a deep recurrent convolutional neural network that is inspired by
 **Check out example prediction videos [here](https://coxlab.github.io/prednet/).**
 
 The architecture is implemented as a custom layer<sup>1</sup> in [Keras](http://keras.io/).
-Code and model data is now compatible with Keras 2.0.
-Specifically, it has been tested on Keras 2.0.6 with Theano 0.9.0, Tensorflow 1.2.1, and Python 2.7.
+Code and model data is now compatible with Keras 2.1.3, Theano 0.9.0, Tensorflow 1.5, and Python 3
 The provided weights were trained with the Theano backend.
 For previous versions of the code compatible with Keras 1.2.1, use fbcdc18.
 To convert old PredNet model files and weights for Keras 2.0 compatibility, see ```convert_model_to_keras2``` in `keras_utils.py`.
@@ -23,7 +22,7 @@ The model download will include the original weights trained for t+1 prediction,
 ### Steps
 1. **Download/process data**
 	```bash
-	python process_kitti.py
+	python3 process_kitti.py
 	```
 	This will scrape the KITTI website to download the raw data from the city, residential, and road categories (~165 GB) and then process the images (cropping, downsampling).
 	Alternatively, the processed data (~3 GB) can be directly downloaded by executing `download_data.sh`
@@ -32,7 +31,7 @@ The model download will include the original weights trained for t+1 prediction,
 
 2. **Train model**
 	```bash
-	python kitti_train.py
+	python3 kitti_train.py
 	```
 	This will train a PredNet model for t+1 prediction.
 	See [Keras FAQ](http://keras.io/getting-started/faq/#how-can-i-run-keras-on-gpu) on how to run using a GPU.
@@ -42,7 +41,7 @@ The model download will include the original weights trained for t+1 prediction,
 
 3. **Evaluate model**
 	```bash
-	python kitti_evaluate.py
+	python3 kitti_evaluate.py
 	```
 	This will output the mean-squared error for predictions as well as make plots comparing predictions to ground-truth.
 
