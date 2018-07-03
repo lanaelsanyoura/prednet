@@ -1,4 +1,6 @@
 import hickle as hkl
+from six.moves import cPickle as pickle
+import h5py
 import numpy as np
 from keras import backend as K
 from keras.preprocessing.image import Iterator
@@ -9,8 +11,12 @@ class SequenceGenerator(Iterator):
                  batch_size=8, shuffle=False, seed=None,
                  output_mode='error', sequence_start_mode='all', N_seq=None,
                  data_format=K.image_data_format()):
-        self.X = hkl.load(data_file)  # X will be like (n_images, nb_cols, nb_rows, nb_channels)
-        self.sources = hkl.load(source_file) # source for each image so when creating sequences can assure that consecutive frames are from same video
+        file_ = open(data_file, 'rb')
+        source = open(source_file, 'rb')
+        self.X = pickle.load(file_,  encoding='latin1')  # X will be like (n_images, nb_cols, nb_rows, nb_channels)
+        self.sources = pickle.load(source,  encoding='latin1') # source for each image so when creating sequences can assure that consecutive frames are from same video
+        file_.close()
+        source.close()
         self.nt = nt
         self.batch_size = batch_size
         self.data_format = data_format
@@ -45,13 +51,16 @@ class SequenceGenerator(Iterator):
 
     def next(self):
         with self.lock:
-            index_array, current_index, current_batch_size = next(self.index_generator)
-        batch_x = np.zeros((current_batch_size, self.nt) + self.im_shape, np.float32)
+            index_array = next(self.index_generator)
+        return self._get_batches_of_transformed_samples(index_array)
+            
+    def _get_batches_of_transformed_samples(self, index_array):
+        batch_x = np.zeros((self.batch_size, self.nt) + self.im_shape, np.float32)
         for i, idx in enumerate(index_array):
             idx = self.possible_starts[idx]
             batch_x[i] = self.preprocess(self.X[idx:idx+self.nt])
         if self.output_mode == 'error':  # model outputs errors, so y should be zeros
-            batch_y = np.zeros(current_batch_size, np.float32)
+            batch_y = np.zeros(self.batch_size, np.float32)
         elif self.output_mode == 'prediction':  # output actual pixels
             batch_y = batch_x
         return batch_x, batch_y

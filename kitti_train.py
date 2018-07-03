@@ -5,7 +5,9 @@ Train PredNet on KITTI sequences. (Geiger et al. 2013, http://www.cvlibs.net/dat
 import os
 import numpy as np
 np.random.seed(123)
-from six.moves import cPickle
+import hickle as hkl
+import h5py
+from six.moves import cPickle as pickle
 
 from keras import backend as K
 from keras.models import Model
@@ -54,13 +56,13 @@ time_loss_weights[0] = 0
 prednet = PredNet(stack_sizes, R_stack_sizes,
                   A_filt_sizes, Ahat_filt_sizes, R_filt_sizes,
                   output_mode='error', return_sequences=True)
-
 inputs = Input(shape=(nt,) + input_shape)
 errors = prednet(inputs)  # errors will be (batch_size, nt, nb_layers)
 errors_by_time = TimeDistributed(Dense(1, trainable=False), weights=[layer_loss_weights, np.zeros(1)], trainable=False)(errors)  # calculate weighted error by layer
 errors_by_time = Flatten()(errors_by_time)  # will be (batch_size, nt)
 final_errors = Dense(1, weights=[time_loss_weights, np.zeros(1)], trainable=False)(errors_by_time)  # weight errors by time
 model = Model(inputs=inputs, outputs=final_errors)
+
 model.compile(loss='mean_absolute_error', optimizer='adam')
 
 train_generator = SequenceGenerator(train_file, train_sources, nt, batch_size=batch_size, shuffle=True)
