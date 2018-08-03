@@ -28,10 +28,9 @@ The model download will include the original weights trained for t+1 prediction,
 ### Steps
 1. **Download/process data**
 	```bash
-	python process_kitti.py
+	$ ./download_data.sh
 	```
-	This will scrape the KITTI website to download the raw data from the city, residential, and road categories (~165 GB) and then process the images (cropping, downsampling).
-	Alternatively, the processed data (~3 GB) can be directly downloaded by executing `download_data.sh`
+	Execute download_data.sh. This will download processed data (~3 GB) and dump it into the correct format using Pickle.
 	<br>
 	<br>
 	
@@ -40,12 +39,12 @@ The model download will include the original weights trained for t+1 prediction,
 	Assign the name of the bucket to a shell variable
 	```
 	$ bucket_name=<your_bucket_name>
-	$ bxaws s3 cp kitti_data/  s3://$bucket_name/kitti_data --recursive
+	$ bxaws s3 cp kitti_data/  s3://$bucket_name/kitti_data/ --recursive
 	```
 	(optional) Verify that the data was successfully uploaded using this comand.
 
 	```
-	$ bxaws  s3 ls s3://$bucket_name/kitti_data
+	$ bxaws  s3 ls s3://$bucket_name/kitti_data/
 	```
 3. **Edit your manifest file, `tensorflow-prednet-kitti.yml`**
 
@@ -117,7 +116,7 @@ The evaluation will output the mean-squared error for predictions as well as mak
 	```
 6.**Send your code and manifest to IBM Watson Studio:** <br>
 	```
-	$ bx ml train model.zip tensor-prednet-kitti.yml
+	$ bx ml train model.zip tensorflow-prednet-kitti.yml
 	```
 	The command should generate a training ID for you, meaning the prednet model has started training on Watson!
 
