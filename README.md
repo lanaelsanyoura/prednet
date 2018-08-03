@@ -39,12 +39,12 @@ The model download will include the original weights trained for t+1 prediction,
 	Assign the name of the bucket to a shell variable
 	```
 	$ bucket_name=<your_bucket_name>
-	$ bxaws s3 cp kitti_data/  s3://$bucket_name/kitti_data --recursive
+	$ bxaws s3 cp kitti_data/  s3://$bucket_name/kitti_data/ --recursive
 	```
 	(optional) Verify that the data was successfully uploaded using this comand.
 
 	```
-	$ bxaws  s3 ls s3://$bucket_name/kitti_data
+	$ bxaws  s3 ls s3://$bucket_name/kitti_data/
 	```
 3. **Edit your manifest file, `tensorflow-prednet-kitti.yml`**
 
