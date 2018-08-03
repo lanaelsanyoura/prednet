@@ -26,10 +26,10 @@ weights_file = os.path.join(WEIGHTS_DIR, 'prednet_kitti_weights.hdf5')  # where 
 json_file = os.path.join(WEIGHTS_DIR, 'prednet_kitti_model.json')
 
 # Data files
-train_file = os.path.join(DATA_DIR, 'X_train.hkl')
-train_sources = os.path.join(DATA_DIR, 'sources_train.hkl')
-val_file = os.path.join(DATA_DIR, 'X_val.hkl')
-val_sources = os.path.join(DATA_DIR, 'sources_val.hkl')
+train_file = os.path.join(DATA_DIR, 'X_train_pickle.hkl')
+train_sources = os.path.join(DATA_DIR, 'sources_train_pickle.hkl')
+val_file = os.path.join(DATA_DIR, 'X_val_pickle.hkl')
+val_sources = os.path.join(DATA_DIR, 'sources_val_pickle.hkl')
 
 
 # Training parameters
