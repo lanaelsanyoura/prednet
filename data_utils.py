@@ -1,4 +1,3 @@
-import hickle as hkl
 from six.moves import cPickle as pickle
 import h5py
 import numpy as np
