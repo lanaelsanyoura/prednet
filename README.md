@@ -22,17 +22,14 @@ The model download will include the original weights trained for t+1 prediction,
 
 ### Steps
 1. **Download/process data**
-	```bash
-	python process_kitti.py
-	```
-	This will scrape the KITTI website to download the raw data from the city, residential, and road categories (~165 GB) and then process the images (cropping, downsampling).
-	Alternatively, the processed data (~3 GB) can be directly downloaded by executing `download_data.sh`
+	The processed data (~3 GB) can be directly downloaded by executing
+	`./download_data.sh`
 	<br>
 	<br>
 
 2. **Train model**
 	```bash
-	python kitti_train.py
+	python3 kitti_train.py
 	```
 	This will train a PredNet model for t+1 prediction.
 	See [Keras FAQ](http://keras.io/getting-started/faq/#how-can-i-run-keras-on-gpu) on how to run using a GPU.
@@ -42,7 +39,7 @@ The model download will include the original weights trained for t+1 prediction,
 
 3. **Evaluate model**
 	```bash
-	python kitti_evaluate.py
+	python3 kitti_evaluate.py
 	```
 	This will output the mean-squared error for predictions as well as make plots comparing predictions to ground-truth.
 
