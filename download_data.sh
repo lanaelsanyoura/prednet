@@ -1,5 +1,4 @@
 savedir="kitti_data"
-mkdir -p -- "$savedir"
-wget https://www.dropbox.com/s/rpwlnn6j39jjme4/kitti_data.zip?dl=0 -O $savedir/prednet_kitti_data.zip
-unzip $savedir/prednet_kitti_data.zip -d $savedir
-python unhickle_pickle.py
+wget https://www.dropbox.com/s/75p1ujrlqd2plqp/kitti_data.zip?dl=0 -O prednet_kitti_data.zip
+unzip prednet_kitti_data.zip
+rm -r prednet_kitti_data.zip
