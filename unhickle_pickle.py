@@ -5,17 +5,6 @@ import hickle as hkl
 import h5py
 from six.moves import cPickle as pickle
 
-from keras import backend as K
-from keras.models import Model
-from keras.layers import Input, Dense, Flatten
-from keras.layers import LSTM
-from keras.layers import TimeDistributed
-from keras.callbacks import LearningRateScheduler, ModelCheckpoint
-from keras.optimizers import Adam
-
-from prednet import PredNet
-from data_utils import SequenceGenerator
-
 TEMP_DATA_DIR = './kitti_data'
 
 # Data files
@@ -42,19 +31,19 @@ source_val_ = hkl.load(val_sources)
 test_source = hkl.load(test_sources)
 test_val = hkl.load(test_x)
 
-with open(train_file, 'wb') as pickle_train:
+with open(p_train_file, 'wb') as pickle_train:
     pickle.dump(train_, pickle_train)
-with open(val_file, 'wb') as pickle_val:
+with open(p_val_file, 'wb') as pickle_val:
     pickle.dump(val_, pickle_val)
 
-with open(train_sources, 'wb') as pickle_source_train:
+with open(p_train_sources, 'wb') as pickle_source_train:
     pickle.dump(source_train_, pickle_source_train)
-with open(val_sources, 'wb') as pickle_source_val:
+with open(p_val_sources, 'wb') as pickle_source_val:
     pickle.dump(source_val_, pickle_source_val)
 
-with open(test_x, 'wb') as pickle_val_test:
+with open(p_test_x, 'wb') as pickle_val_test:
     pickle.dump(test_val, pickle_val_test)
-with open(test_sources, 'wb') as pickle_source_test:
+with open(p_test_sources, 'wb') as pickle_source_test:
     pickle.dump(test_source, pickle_source_test)
 
 pickle_train.close()
